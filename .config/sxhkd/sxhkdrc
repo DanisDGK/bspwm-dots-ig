@@ -1,0 +1,79 @@
+# vim:ft=conf                                                       
+#                                                      
+#        ██████ ▒██   ██▒ ██░ ██  ██ ▄█▀▓█████▄        
+#      ▒██    ▒ ▒▒ █ █ ▒░▓██░ ██▒ ██▄█▒ ▒██▀ ██▌      
+#      ░ ▓██▄   ░░  █   ░▒██▀▀██░▓███▄░ ░██   █▌       
+#        ▒   ██▒ ░ █ █ ▒ ░▓█ ░██ ▓██ █▄ ░▓█▄   ▌       
+#      ▒██████▒▒▒██▒ ▒██▒░▓█▒░██▓▒██▒ █▄░▒████▓        
+#      ▒ ▒▓▒ ▒ ░▒▒ ░ ░▓ ░ ▒ ░░▒░▒▒ ▒▒ ▓▒ ▒▒▓  ▒       
+#      ░ ░▒  ░ ░░░   ░▒ ░ ▒ ░▒░ ░░ ░▒ ▒░ ░ ▒  ▒        
+#      ░  ░  ░   ░    ░   ░  ░░ ░░ ░░ ░  ░ ░  ░        
+#            ░   ░    ░   ░  ░  ░░  ░      ░             
+#                                        ░             
+#                                                      
+
+# ##############################################################################
+# #                                   KEYBINDS                                 #
+# ##############################################################################
+
+# KILL FOCUSED WINDOW
+super + w
+    bspc node -c
+
+# TOGGLE FLOATING
+super + space
+  bspc node -t {floating,tiled}
+
+# MOVE TO OR SEND APP TO WORKSPACE
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-5}'
+	
+# TAB BETWEEN WORKSPACES
+super + {_,shift + } Tab
+    bspc desktop -f {next,prev}
+ 
+# TAB BETWEEN APPLICATIONS
+alt + {_,shift +} Tab
+    bspc node -f {next,prev}
+
+# OPEN TERMINAL
+super + shift + Return
+    kitty
+
+# TOGGLE FULLSCREEN OR MONACLE
+super + f
+    bspc node -t "~"fullscreen
+
+# OPEN APPMENU
+super + p
+    rofi -show drun -theme $HOME/.config/rofi/config.rasi
+
+# RESTART SXHKD
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# RESTART BSPWM
+super + shift + r
+  bspc wm -r
+
+# QUIT BSPWM
+super + shift + q
+  bspc quit
+
+ =============================================================================
+
+# REDSHIFT OFF
+super + ctrl + @r
+  redshift -x
+
+#REDSHIFT ON
+super + r
+  redshift -O 3800K
+  
+# SCRATCHPAD
+super + z
+  $HOME/.config/bspwm/scripts/bspscratchpad
+  
+# SCREENSHOT
+super + Print
+  flameshot gui
